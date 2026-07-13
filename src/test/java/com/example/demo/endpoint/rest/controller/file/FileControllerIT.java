@@ -30,7 +30,7 @@ class FileControllerIT extends FacadeIT {
             return "notes.txt";
           }
         });
-    body.add("email", "francie@hei.mg");
+    body.add("email", "hei.hajarimbola@gmail.com");
 
     var headers = new HttpHeaders();
     headers.setContentType(MediaType.MULTIPART_FORM_DATA);

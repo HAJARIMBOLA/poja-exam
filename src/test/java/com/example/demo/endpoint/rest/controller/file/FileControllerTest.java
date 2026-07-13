@@ -15,6 +15,7 @@ import com.example.demo.file.store.UploadedFileRepository;
 import com.example.demo.file.zip.FileTyper;
 import com.example.demo.mail.Email;
 import com.example.demo.mail.Mailer;
+import jakarta.mail.internet.AddressException;
 import java.io.File;
 import java.io.IOException;
 import java.time.Instant;
@@ -48,7 +49,8 @@ class FileControllerTest {
   }
 
   @Test
-  void upload_withJpegFile_shouldConvertUploadToS3AndSendEmail() throws IOException {
+  void upload_withJpegFile_shouldConvertUploadToS3AndSendEmail()
+      throws IOException, AddressException {
     var multipartFile =
         new MockMultipartFile(
             "file", "photo.jpg", MediaType.IMAGE_JPEG_VALUE, "fake-image-bytes".getBytes());
@@ -75,7 +77,8 @@ class FileControllerTest {
   }
 
   @Test
-  void upload_withNonJpegFile_shouldPersistWithoutS3UploadOrEmail() throws IOException {
+  void upload_withNonJpegFile_shouldPersistWithoutS3UploadOrEmail()
+      throws IOException, AddressException {
     var multipartFile =
         new MockMultipartFile(
             "file", "document.txt", MediaType.TEXT_PLAIN_VALUE, "hello".getBytes());
@@ -94,7 +97,8 @@ class FileControllerTest {
   }
 
   @Test
-  void upload_withJpegFile_shouldReturnEntityMatchingUploadedFileFields() throws IOException {
+  void upload_withJpegFile_shouldReturnEntityMatchingUploadedFileFields()
+      throws IOException, AddressException {
     var multipartFile =
         new MockMultipartFile(
             "file", "avatar.jpeg", MediaType.IMAGE_JPEG_VALUE, "bytes".getBytes());
