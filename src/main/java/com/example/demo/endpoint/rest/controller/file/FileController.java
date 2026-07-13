@@ -9,6 +9,7 @@ import com.example.demo.file.store.UploadedFileRepository;
 import com.example.demo.file.zip.FileTyper;
 import com.example.demo.mail.Email;
 import com.example.demo.mail.Mailer;
+import jakarta.mail.internet.AddressException;
 import jakarta.mail.internet.InternetAddress;
 import java.io.File;
 import java.io.IOException;
@@ -37,7 +38,7 @@ public class FileController {
   @PostMapping(value = "/files", consumes = MULTIPART_FORM_DATA_VALUE)
   public ResponseEntity<UploadedFile> upload(
       @RequestParam("file") MultipartFile file, @RequestParam("email") String email)
-      throws IOException {
+      throws IOException, AddressException {
 
     var id = UUID.randomUUID();
     var tempFile = File.createTempFile("upload-" + id, "-" + file.getOriginalFilename());
