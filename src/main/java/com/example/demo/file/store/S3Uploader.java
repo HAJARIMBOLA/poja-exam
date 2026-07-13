@@ -11,16 +11,16 @@ import software.amazon.awssdk.services.s3.model.PutObjectRequest;
 public class S3Uploader {
 
   private final S3Client s3Client;
-  private final BucketConf bucketConf;
+  private final S3Conf s3Conf;
 
   public String upload(byte[] content, String key, String contentType) {
     s3Client.putObject(
         PutObjectRequest.builder()
-            .bucket(bucketConf.getBucket())
+            .bucket(s3Conf.getBucket())
             .key(key)
             .contentType(contentType)
             .build(),
         RequestBody.fromBytes(content));
-    return "https://%s.s3.amazonaws.com/%s".formatted(bucketConf.getBucket(), key);
+    return "https://%s.s3.amazonaws.com/%s".formatted(s3Conf.getBucket(), key);
   }
 }
