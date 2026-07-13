@@ -14,12 +14,14 @@ import jakarta.mail.internet.InternetAddress;
 import java.io.File;
 import java.io.IOException;
 import java.time.Instant;
+import java.util.Collection;
 import java.util.List;
 import java.util.UUID;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -70,5 +72,10 @@ public class FileController {
     repository.save(uploadedFile);
 
     return new ResponseEntity<>(uploadedFile, HttpStatus.CREATED);
+  }
+
+  @GetMapping(value = "/files")
+  public ResponseEntity<Collection<UploadedFile>> findAll() {
+    return ResponseEntity.ok(repository.findAll());
   }
 }

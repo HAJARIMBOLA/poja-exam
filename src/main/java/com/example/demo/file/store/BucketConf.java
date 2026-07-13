@@ -13,8 +13,7 @@ public class BucketConf {
   @Getter private final String bucket;
   private final Region region;
 
-  public BucketConf(
-      @Value("${aws.s3.bucket}") String bucket, @Value("eu-west-3") Region region) {
+  public BucketConf(@Value("${aws.s3.bucket}") String bucket, @Value("eu-west-3") Region region) {
     this.bucket = bucket;
     this.region = region;
   }

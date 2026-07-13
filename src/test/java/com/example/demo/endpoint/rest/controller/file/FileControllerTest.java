@@ -17,6 +17,9 @@ import com.example.demo.mail.Email;
 import com.example.demo.mail.Mailer;
 import java.io.File;
 import java.io.IOException;
+import java.time.Instant;
+import java.util.List;
+import java.util.UUID;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.ArgumentCaptor;
@@ -105,5 +108,27 @@ class FileControllerTest {
 
     assertThat(body).isInstanceOf(UploadedFile.class);
     assertThat(body.id()).isNotNull();
+  }
+
+  @Test
+  void findAll_withExistingFiles_shouldReturnThemAll() {
+    var firstFile = new UploadedFile(UUID.randomUUID(), "a.jpg", "a@hei.mg", null, Instant.now());
+    var secondFile = new UploadedFile(UUID.randomUUID(), "b.jpg", "b@hei.mg", null, Instant.now());
+    when(repository.findAll()).thenReturn(List.of(firstFile, secondFile));
+
+    var response = fileController.findAll();
+
+    assertThat(response.getStatusCode()).isEqualTo(HttpStatus.OK);
+    assertThat(response.getBody()).containsExactlyInAnyOrder(firstFile, secondFile);
+  }
+
+  @Test
+  void findAll_withNoFile_shouldReturnEmptyCollection() {
+    when(repository.findAll()).thenReturn(List.of());
+
+    var response = fileController.findAll();
+
+    assertThat(response.getStatusCode()).isEqualTo(HttpStatus.OK);
+    assertThat(response.getBody()).isEmpty();
   }
 }

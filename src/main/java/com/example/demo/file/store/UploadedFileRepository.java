@@ -8,8 +8,8 @@ import java.util.concurrent.ConcurrentHashMap;
 import org.springframework.stereotype.Component;
 
 /**
- * Simple in-memory storage for {@link UploadedFile}. No database is set up in this project yet,
- * so uploads only live for the lifetime of the running instance.
+ * Simple in-memory storage for {@link UploadedFile}. No database is set up in this project yet, so
+ * uploads only live for the lifetime of the running instance.
  */
 @Component
 public class UploadedFileRepository {

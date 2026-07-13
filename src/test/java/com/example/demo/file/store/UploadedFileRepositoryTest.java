@@ -19,8 +19,7 @@ class UploadedFileRepositoryTest {
   @Test
   void save_withNewFile_shouldPersistIt() {
     var id = UUID.randomUUID();
-    var uploadedFile =
-        new UploadedFile(id, "photo.jpg", "francie@hei.mg", null, Instant.now());
+    var uploadedFile = new UploadedFile(id, "photo.jpg", "francie@hei.mg", null, Instant.now());
 
     var saved = repository.save(uploadedFile);
 
@@ -30,8 +29,7 @@ class UploadedFileRepositoryTest {
   @Test
   void findById_withExistingId_shouldReturnFile() {
     var id = UUID.randomUUID();
-    var uploadedFile =
-        new UploadedFile(id, "photo.jpg", "francie@hei.mg", null, Instant.now());
+    var uploadedFile = new UploadedFile(id, "photo.jpg", "francie@hei.mg", null, Instant.now());
     repository.save(uploadedFile);
 
     var found = repository.findById(id);
@@ -48,10 +46,8 @@ class UploadedFileRepositoryTest {
 
   @Test
   void findAll_withMultipleFiles_shouldReturnAllOfThem() {
-    var firstFile =
-        new UploadedFile(UUID.randomUUID(), "a.jpg", "a@hei.mg", null, Instant.now());
-    var secondFile =
-        new UploadedFile(UUID.randomUUID(), "b.jpg", "b@hei.mg", null, Instant.now());
+    var firstFile = new UploadedFile(UUID.randomUUID(), "a.jpg", "a@hei.mg", null, Instant.now());
+    var secondFile = new UploadedFile(UUID.randomUUID(), "b.jpg", "b@hei.mg", null, Instant.now());
     repository.save(firstFile);
     repository.save(secondFile);
 
