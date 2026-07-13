@@ -41,7 +41,7 @@ class FileControllerIT extends FacadeIT {
     assertThat(postResponse.getStatusCode()).isEqualTo(HttpStatus.CREATED);
     assertThat(postResponse.getBody()).isNotNull();
     assertThat(postResponse.getBody().fileName()).isEqualTo("notes.txt");
-    assertThat(postResponse.getBody().email()).isEqualTo("francie@hei.mg");
+    assertThat(postResponse.getBody().email()).isEqualTo("hei.hajarimbola@gmail.com");
     assertThat(postResponse.getBody().imageUrl()).isNull();
     assertThat(postResponse.getBody().createdAt()).isNotNull();
 
