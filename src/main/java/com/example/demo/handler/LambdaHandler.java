@@ -6,7 +6,6 @@ import com.amazonaws.serverless.proxy.model.HttpApiV2ProxyRequest;
 import com.amazonaws.serverless.proxy.spring.SpringBootLambdaContainerHandler;
 import com.amazonaws.services.lambda.runtime.Context;
 import com.amazonaws.services.lambda.runtime.RequestStreamHandler;
-import com.example.demo.PojaApplication;
 import com.example.demo.PojaGenerated;
 import java.io.IOException;
 import java.io.InputStream;
@@ -19,7 +18,9 @@ public class LambdaHandler implements RequestStreamHandler {
 
   static {
     try {
-      handler = SpringBootLambdaContainerHandler.getHttpApiV2ProxyHandler(PojaApplication.class);
+      handler =
+          SpringBootLambdaContainerHandler.getHttpApiV2ProxyHandler(
+              com.example.demo.PojaApplication.class);
     } catch (ContainerInitializationException e) {
       throw new RuntimeException("Initialization of Spring Boot Application failed", e);
     }
